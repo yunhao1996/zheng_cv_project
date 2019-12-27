@@ -33,3 +33,9 @@ if you want to test model which has trained. You can:
 python test.py 
 ```
 what's more, please note modification points in codes.
+## folder --- deploy
+To achieve web deploy. Please run:
+```
+python app.py runserver -h <your ip-address> -p 8000 -d 
+```
+Then input <your ip-address> :8000 in web
