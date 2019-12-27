@@ -22,7 +22,7 @@ WARM: 1
 SAVE_EPOCH: 1
 ```
 ## folder---classifier
-To achieve images classification. If you want to train this model, please run
+To achieve images classification. If you want to train this model, please run:
 ```
 cd classifier
 mkdir checkpoints  # put config.yml to this folder
@@ -38,4 +38,7 @@ To achieve web deploy. Please run:
 ```
 python app.py runserver -h <your ip-address> -p 8000 -d 
 ```
-Then input <your ip-address> :8000 in web
+Then input the following information in web :
+```
+<your ip-address> :8000 
+```
