@@ -1,6 +1,6 @@
 # zheng_cv_project
-```
 config.yml
+```
 MODE: 1             # 1:train,2:test
 MODEL: 2            # 1:VGG,2:RESNET
 SEED: 10            # random seed
@@ -25,6 +25,11 @@ SAVE_EPOCH: 1
 To achieve images classification. If you want to train this model, please run
 ```
 cd classifier
-mkdir checkpoints
-python train ./checkpoints
+mkdir checkpoints  # put config.yml to this folder
+python train ./checkpoints/
 ```
+if you want to test model which has trained. You can:
+```
+python test.py 
+```
+what's more, please note modification points in codes.
