@@ -1,4 +1,5 @@
 # zheng_cv_project
+```
 config.yml
 MODE: 1             # 1:train,2:test
 MODEL: 2            # 1:VGG,2:RESNET
@@ -19,6 +20,7 @@ DEVICE: 1
 MILESTONES: [30,60,80]
 WARM: 1
 SAVE_EPOCH: 1
+```
 ## folder---classifier
 To achieve images classification. If you want to train this model, please run
 ```
