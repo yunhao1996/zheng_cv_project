@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello</title>
+    
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<!--
+需引入jQuery
+引入样式文件
+引入上传图片预览的代码
+获取上传的图片信息
+在php页面通过 request()->file() 获取图片信息
+-->
+<!-- 上传图片预览时需要的css start 无需改动-->
+<style type="text/css">
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
+</style>
+<!-- 上传图片预览时需要的css end -->
+
+<body>
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">实现图片预览效果</label>
+                                <div class="col-sm-10">
+                                    <a href="javascript:;" class="file">选择文件
+                                        <input type="file" name="img" required>
+                                    </a>
+                                    <img id="img" height="100" src="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <button type="button" class="btn btn-primary" onclick="return preserve()">保存</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div> <!-- end card-box -->
+                </div> <!-- end card-->
+            </div><!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function preserve()
+    {
+        var formData    = new FormData();
+        var img = $("[name='img']").prop('files')[0];/*获取上传图片的信息*/
+        formData.append("img",img);
+        $.ajax({
+            type : "post",
+            url : "/post",
+            processData : false,
+            contentType : false,
+            data : formData,
+            success : function(data) {
+                alert('上传成功')
+            }
+        });
+    }
+
+</script>
+<!-- 上传图片并预览的js文件 start  无需改动-->
+<script type="text/javascript">
+    var small_img = document.querySelector('input[name=small_img]');
+    var img = document.querySelector('input[name=img]');
+    small_imgs = document.querySelector('#small_img');
+    imgs = document.querySelector('#img');
+    if (small_img) {
+        small_img.addEventListener('change', function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+            reader.addEventListener("load", function() {
+                small_imgs.src = reader.result;
+            }, false);
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+            reader.readAsDataURL(file);
+            $("img").eq(0).css("display", "block");
+        }, false);
+    }
+    if(img){
+        img.addEventListener('change', function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+            reader.addEventListener("load", function() {
+                imgs.src = reader.result;
+            }, false);
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+            reader.readAsDataURL(file);
+            $("img").eq(1).css("display", "block");
+        }, false);
+    }
+</script>
+<!-- 上传图片并预览的js文件 end -->
